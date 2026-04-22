@@ -1,6 +1,10 @@
 @extends('layout.app')
 
+<<<<<<< HEAD
 @section('title', 'SRC Wulan')
+=======
+@section('title', 'Madinashop')
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
 
 @section('content')
     <div class="relative flex flex-col w-full max-w-[640px] min-h-screen gap-5 mx-auto bg-[#F5F5F0]">
@@ -34,7 +38,11 @@
                 <div class="flex p-4 flex-col gap-2">
                     <label for="address" class="font-semibold">Masukan Alamat Lengkap</label>
                     <div
+<<<<<<< HEAD
                         class="flex items-start w-full rounded-[18px] ring-1 ring-[#090917] p-[14px] gap-[10px] overflow-hidden transition-all duration-300 focus-within:ring-2 focus-within:ring-[#e40312]">
+=======
+                        class="flex items-start w-full rounded-[18px] ring-1 ring-[#090917] p-[14px] gap-[10px] overflow-hidden transition-all duration-300 focus-within:ring-2 focus-within:ring-[#0AA085]">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                         <img src="{{asset('assets//images/icons/house-2.svg')}}" class=" w-6 h-6 flex shrink-0" alt="icon">
                         <textarea name="address" id="address" rows="6"
                             class="appearance-none outline-none w-full font-semibold placeholder:font-normal placeholder:text-[#878785]"
@@ -63,7 +71,11 @@
                             </p>
 
                         </div>
+<<<<<<< HEAD
                         <button type="submit" class="rounded-full p-[12px_20px] bg-[#e40312] font-semibold">
+=======
+                        <button type="submit" class="rounded-full p-[12px_20px] bg-[#0AA085] font-semibold">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                             Continue
                         </button>
                     </div>

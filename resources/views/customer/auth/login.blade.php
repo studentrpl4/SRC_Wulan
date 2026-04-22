@@ -5,9 +5,19 @@
 @section('content')
     <header class="flex items-center mb-20 mt-5">
         <div class="p-2 bg-primary-green/20 rounded-lg mr-3">
+<<<<<<< HEAD
             <img src="{{ asset('assets/images/logo_src wulan.png') }}" alt="Logo SRC Wulan" class="w-6 h-6 object-cover">
         </div>
         <h1 class="text-xl font-semibold text-gray-800">SRC Wulan</h1>
+=======
+            <svg class="w-6 h-6 text-[#0AA085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+        </div>
+        <h1 class="text-xl font-semibold text-gray-800">Madinashop</h1>
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
     </header>
     <div class="min-h-screen flex flex-col items-center pt-10">
 
@@ -27,6 +37,7 @@
 
                 {{-- Password --}}
                 <label for="password" class="block text-sm font-semibold text-gray-700 mt-5 mb-1">Password</label>
+<<<<<<< HEAD
                 <div class="relative group">
                     <input type="password" id="password" name="password"
                         class="w-full bg-white rounded-full py-3 px-5 pr-12 text-gray-700 shadow-sm border border-gray-200 focus:ring-primary-green focus:ring-2 outline-none transition-all duration-300"
@@ -48,6 +59,13 @@
                             <line x1="1" y1="1" x2="23" y2="23"></line>
                         </svg>
                     </button>
+=======
+                <div class="relative">
+                    <input type="password" id="password" name="password"
+                        class="w-full bg-white rounded-full py-3 px-5 text-gray-700 shadow-sm border border-gray-200 focus:ring-primary-green focus:ring-2 outline-none"
+                        placeholder="Masukkan password anda">
+
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 </div>
 
                 {{-- Forget --}}
@@ -58,18 +76,27 @@
 
                 {{-- Login Button --}}
                 <button id="loginBtn" type="submit"
+<<<<<<< HEAD
                     class="w-full py-3 px-4 bg-gray-300 text-white rounded-full text-lg font-semibold cursor-not-allowed transition-all duration-300 ease-out transform hover:scale-105 active:scale-95 relative overflow-hidden disabled:hover:scale-100">
+=======
+                    class="w-full py-3 bg-gray-300 text-white rounded-full text-lg font-medium cursor-not-allowed">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                     Login
                 </button>
             </form>
             {{-- Register --}}
             <p class="text-center mt-4 text-secondary-text text-sm">
                 Belum punya akun?
+<<<<<<< HEAD
                 <a href="{{ route('customer.auth.register') }}" class="text-[#e40312] font-semibold">Daftar</a>
+=======
+                <a href="{{ route('customer.auth.register') }}" class="text-[#0AA085] font-semibold">Daftar</a>
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
             </p>
         </div>
 
     </div>
+<<<<<<< HEAD
     <style>
         /* Enhanced button effects */
         #loginBtn {
@@ -117,10 +144,13 @@
         }
     </style>
 
+=======
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
     <script>
         const username = document.getElementById("email");
         const password = document.getElementById("password");
         const loginBtn = document.getElementById("loginBtn");
+<<<<<<< HEAD
         const togglePasswordBtn = document.getElementById("togglePassword");
         const eyeIcon = document.getElementById("eyeIcon");
         const eyeSlashIcon = document.getElementById("eyeSlashIcon");
@@ -142,10 +172,13 @@
                 e.preventDefault();
             }
         });
+=======
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
 
         function toggleButton() {
             if (username.value.trim() !== "" && password.value.trim() !== "") {
                 loginBtn.classList.remove("bg-gray-300", "cursor-not-allowed");
+<<<<<<< HEAD
                 loginBtn.classList.add("bg-[#e40312]", "cursor-pointer");
                 loginBtn.disabled = false;
             } else {
@@ -162,5 +195,16 @@
         
         // Initial state
         toggleButton();
+=======
+                loginBtn.classList.add("bg-[#0AA085]", "cursor-pointer");
+            } else {
+                loginBtn.classList.add("bg-gray-300", "cursor-not-allowed");
+                loginBtn.classList.remove("bg-[#0AA085]", "cursor-pointer");
+            }
+        }
+
+        username.addEventListener("input", toggleButton);
+        password.addEventListener("input", toggleButton);
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
     </script>
 @endsection

@@ -1,9 +1,16 @@
 @extends('layout.app')
 
+<<<<<<< HEAD
 @section('title', 'SRC Wulan')
 
 @section('content')
     <div class="min-h-screen bg-[#ffffff] px-4 py-4 pb-24">
+=======
+@section('title', 'Madinashop')
+
+@section('content')
+    <div class="min-h-screen bg-[#F4F5F1] px-4 py-4 pb-24">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
 
         {{-- Pencarian --}}
         <form action="{{route('front.search')}}" class="flex justify-between items-center mx-auto">
@@ -17,7 +24,11 @@
                         class="w-full bg-transparent outline-none text-gray-700">
                 </div>
 
+<<<<<<< HEAD
                 <button class="ml-0 bg-[#e40312] text-white px-5 py-3 rounded-r-full font-medium">
+=======
+                <button class="ml-0 bg-[#0AA085] text-white px-5 py-3 rounded-r-full font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                     Cari
                 </button>
             </div>
@@ -25,7 +36,11 @@
 
         <nav class="flex items-center justify-between pt-3 mb-2 border-b border-gray-400">
             <div class="flex space-x-6">
+<<<<<<< HEAD
                 <button id="btn-all" class="font-semibold text-gray-900 border-b-2 border-[#e40312] pb-1">
+=======
+                <button id="btn-all" class="font-semibold text-gray-900 border-b-2 border-[#0AA085] pb-1">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                     Terbaru
                 </button>
                 <button id="btn-populer" class="font-semibold text-gray-400  pb-1">
@@ -54,11 +69,19 @@
                         <div class="bg-white p-4 rounded-xl shadow-sm">
                             <img src="{{ asset('storage/' . $item->thumbnail) }}" class="w-full rounded-lg mb-3" alt="">
                             <h3 class="text-sm text-gray-700">{{ $item->name }} <br> {{ $item->about }} </h3>
+<<<<<<< HEAD
                             <p class="text-[#e40312] font-semibold text-sm mt-1">Rp.
                                 {{ number_format($item->price, 0, '.', '.') }}
                             </p>
                             <button type="submit"
                                 class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium">
+=======
+                            <p class="text-[#0AA085] font-semibold text-sm mt-1">Rp.
+                                {{ number_format($item->price, 0, '.', '.') }}
+                            </p>
+                            <button type="submit"
+                                class="mt-3 w-full bg-[#0AA085] text-white py-2 rounded-full text-sm font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                 + Keranjang
                             </button>
                         </div>
@@ -78,11 +101,19 @@
                         <div class="bg-white p-4 rounded-xl shadow-sm">
                             <img src="{{ asset('storage/' . $item->thumbnail) }}" class="w-full rounded-lg mb-3" alt="">
                             <h3 class="text-sm text-gray-700">{{ $item->name }} <br> {{ $item->about }} </h3>
+<<<<<<< HEAD
                             <p class="text-[#e40312] font-semibold text-sm mt-1">Rp.
                                 {{ number_format($item->price, 0, '.', '.') }}
                             </p>
                             <button type="submit"
                                 class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium">
+=======
+                            <p class="text-[#0AA085] font-semibold text-sm mt-1">Rp.
+                                {{ number_format($item->price, 0, '.', '.') }}
+                            </p>
+                            <button type="submit"
+                                class="mt-3 w-full bg-[#0AA085] text-white py-2 rounded-full text-sm font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                 + Keranjang
                             </button>
                         </div>
@@ -107,13 +138,21 @@
             btnall.classList.add(
                 'text-text-light',
                 'border-b-2',
+<<<<<<< HEAD
                 'border-[#e40312]',
+=======
+                'border-[#0AA085]',
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 'text-gray-900'
             )
             btnpopuler.classList.remove(
                 'text-text-light',
                 'border-b-2',
+<<<<<<< HEAD
                 'border-[#e40312]',
+=======
+                'border-[#0AA085]',
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 'text-gray-900'
             )
             all.classList.remove('hidden')
@@ -123,7 +162,11 @@
             btnall.classList.remove(
                 'text-text-light',
                 'border-b-2',
+<<<<<<< HEAD
                 'border-[#e40312]',
+=======
+                'border-[#0AA085]',
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 'text-gray-900',
             )
             btnall.classList.add(
@@ -132,7 +175,11 @@
             btnpopuler.classList.add(
                 'text-text-light',
                 'border-b-2',
+<<<<<<< HEAD
                 'border-[#e40312]',
+=======
+                'border-[#0AA085]',
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 'text-gray-900'
             )
             all.classList.add('hidden')

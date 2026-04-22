@@ -3,7 +3,11 @@
 @section('title', 'Login')
 
 @section('content')
+<<<<<<< HEAD
     <div class="min-h-screen bg-[#ffffff] flex justify-center">
+=======
+    <div class="min-h-screen bg-[#F5F5F0] flex justify-center">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
         <div class="w-full max-w-sm px-4 pt-6 pb-10">
             <div class="flex items-center justify-between px-2 top-0 mb-6">
                 <a href="{{ route('customer.profile') }}"

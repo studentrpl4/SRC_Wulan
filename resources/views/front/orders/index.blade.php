@@ -3,7 +3,11 @@
 @section('title', 'Riwayat Pesanan')
 
 @section('content')
+<<<<<<< HEAD
     <div class="min-h-screen bg-[#ffffff] flex justify-center">
+=======
+    <div class="min-h-screen bg-[#F5F5F0] flex justify-center">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
         <div class="w-full max-w-sm px-4 pt-6 pb-28">
 
             <!-- Header -->
@@ -34,10 +38,21 @@
                         <a href="{{ route('orders.show', $item->id) }}"></a>
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10  rounded-xl flex items-center justify-center">
+<<<<<<< HEAD
                                 <img src="{{ asset('assets/images/logo_src_wulan.png') }}" alt="Logo SRC Wulan" class="w-6 h-6 object-cover">
                             </div>
                             <div class="flex-1">
                                 <p class="font-semibold text-sm">SRC Wulan</p>
+=======
+                                <svg class="w-6 h-6 text-[#0AA085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-sm">Madinashop</p>
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                 @if ($item->status == 'processing')
                                     <p class="text-xs text-orange-500">
                                         Sedang disiapkan
@@ -94,7 +109,11 @@
                                         Pesanan diatar
                                     </button>
                                 @elseif($item->status == 'completed' && $item->transaksi->status == 'berhasil')
+<<<<<<< HEAD
                                     <button class="bg-[#e40312] text-white text-sm px-4 py-2 rounded-full font-medium">
+=======
+                                    <button class="bg-[#0AA085] text-white text-sm px-4 py-2 rounded-full font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                         Pesanan telah sampai
                                     </button>
                                 @elseif($item->transaksi->status == 'menunggu' && $item->payment_method == 'transfer')
@@ -113,7 +132,11 @@
                                         Pesanan diatar
                                     </button>
                                 @elseif($item->status == 'completed')
+<<<<<<< HEAD
                                     <button class="bg-[#e40312] text-white text-sm px-4 py-2 rounded-full font-medium">
+=======
+                                    <button class="bg-[#0AA085] text-white text-sm px-4 py-2 rounded-full font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                         Pesanan telah sampai
                                     </button>
                                 @endif
@@ -136,10 +159,21 @@
                         <a href="{{ route('orders.show', $item->id) }}"></a>
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10  rounded-xl flex items-center justify-center">
+<<<<<<< HEAD
                                 <img src="{{ asset('assets/images/logo_src_wulan.png') }}" alt="Logo SRC Wulan" class="w-6 h-6 object-cover">
                             </div>
                             <div class="flex-1">
                                 <p class="font-semibold text-sm">SRC Wulan</p>
+=======
+                                <svg class="w-6 h-6 text-[#0AA085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-sm">Madinashop</p>
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                 @if ($item->status == 'processing')
                                     <p class="text-xs text-orange-500">
                                         Sedang disiapkan
@@ -196,7 +230,11 @@
                                         Pesanan diatar
                                     </button>
                                 @elseif($item->status == 'completed' && $item->transaksi->status == 'berhasil')
+<<<<<<< HEAD
                                     <button class="bg-[#e40312] text-white text-sm px-4 py-2 rounded-full font-medium">
+=======
+                                    <button class="bg-[#0AA085] text-white text-sm px-4 py-2 rounded-full font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                         Pesanan telah sampai
                                     </button>
                                 @elseif($item->transaksi->status == 'menunggu' && $item->payment_method == 'transfer')
@@ -215,7 +253,11 @@
                                         Pesanan diatar
                                     </button>
                                 @elseif($item->status == 'completed')
+<<<<<<< HEAD
                                     <button class="bg-[#e40312] text-white text-sm px-4 py-2 rounded-full font-medium">
+=======
+                                    <button class="bg-[#0AA085] text-white text-sm px-4 py-2 rounded-full font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                         Pesanan telah sampai
                                     </button>
                                 @endif
@@ -237,10 +279,21 @@
                         <a href="{{ route('orders.show', $item->id) }}"></a>
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10  rounded-xl flex items-center justify-center">
+<<<<<<< HEAD
                                 <img src="{{ asset('assets/images/logo_src wulan.png') }}" alt="Logo SRC Wulan" class="w-6 h-6 object-cover">
                             </div>
                             <div class="flex-1">
                                 <p class="font-semibold text-sm">SRC Wulan</p>
+=======
+                                <svg class="w-6 h-6 text-[#0AA085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-sm">Madinashop</p>
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                 @if ($item->status == 'processing')
                                     <p class="text-xs text-orange-500">
                                         Sedang disiapkan
@@ -297,7 +350,11 @@
                                         Pesanan diatar
                                     </button>
                                 @elseif($item->status == 'completed' && $item->transaksi->status == 'berhasil')
+<<<<<<< HEAD
                                     <button class="bg-[#e40312] text-white text-sm px-4 py-2 rounded-full font-medium">
+=======
+                                    <button class="bg-[#0AA085] text-white text-sm px-4 py-2 rounded-full font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                         Pesanan telah sampai
                                     </button>
                                 @elseif($item->transaksi->status == 'menunggu' && $item->payment_method == 'transfer')
@@ -316,7 +373,11 @@
                                         Pesanan diatar
                                     </button>
                                 @elseif($item->status == 'completed')
+<<<<<<< HEAD
                                     <button class="bg-[#e40312] text-white text-sm px-4 py-2 rounded-full font-medium">
+=======
+                                    <button class="bg-[#0AA085] text-white text-sm px-4 py-2 rounded-full font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                         Pesanan telah sampai
                                     </button>
                                 @endif

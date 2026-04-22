@@ -14,14 +14,22 @@
         <section id="fresh" class="flex flex-col gap-4 px-4 mb-[111px]">
             <div class="flex items-center py-2 mb-4">
                 <input type="checkbox" id="selectAll" checked
+<<<<<<< HEAD
                     class="h-5 w-5 text-green-500 border-[#e40312] accent-[#e40312] rounded focus:ring-green-500 mr-3">
+=======
+                    class="h-5 w-5 text-green-500 border-[#0AA085] accent-[#0AA085] rounded focus:ring-green-500 mr-3">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 <label for="selectAll" class="text-base text-gray-700 font-medium">Pilih semua</label>
             </div>
             @foreach ($carts as $item)
                 <div class="cart-item flex items-start py-3 mb-2 border-b border-gray-100" data-price="20000"
                     data-quantity="1">
                     <input type="checkbox" checked
+<<<<<<< HEAD
                         class="item-checkbox h-5 w-5 text-green-500 border-[#e40312] accent-[#e40312] rounded focus:ring-green-500 mt-1 mr-3 flex-shrink-0">
+=======
+                        class="item-checkbox h-5 w-5 text-green-500 border-[#0AA085] accent-[#0AA085] rounded focus:ring-green-500 mt-1 mr-3 flex-shrink-0">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
 
                     <div class="flex flex-1">
                         <img src="{{ asset('storage/' . $item->product->thumbnail) }}" alt="Bebelac Susu"
@@ -33,7 +41,11 @@
                             </p>
                             <p class="text-sm leading-[21px] ">{{ $item->product->category->name }}</p>
                             <div class="flex items-center justify-between mt-1">
+<<<<<<< HEAD
                                 <p class="text-base font-bold text-[#e40312] item-subtotal-display"
+=======
+                                <p class="text-base font-bold text-[#0AA085] item-subtotal-display"
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                     id="cart-subtotal-{{ $item->id }}">Rp
                                     {{ number_format($item->subtotal, 0, ',', '.') }}
                                 </p>
@@ -99,7 +111,11 @@
                             
                         </div>
                         <a href="{{ route('checkout.index') }}"
+<<<<<<< HEAD
                             class="rounded-full p-[12px_20px] bg-[#e40312] font-semibold text-white">Lanjut</a>
+=======
+                            class="rounded-full p-[12px_20px] bg-[#0AA085] font-semibold text-white">Lanjut</a>
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                     </div>
                 </div>
             </div>

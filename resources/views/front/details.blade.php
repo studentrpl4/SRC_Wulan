@@ -1,6 +1,10 @@
 @extends('layout.app')
 
+<<<<<<< HEAD
 @section('title', 'SRC Wulan')
+=======
+@section('title', 'Madinashop')
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
 
 @section('content')
     <div class="relative flex flex-col w-full max-w-[640px] min-h-screen gap-5 mx-auto bg-[#F5F5F0]">
@@ -81,7 +85,11 @@
                 </button>
                 <p id="quantity-display" class="font-bold text-xl leading-[30px]">1</p>
                 <button type="button" id="plus"
+<<<<<<< HEAD
                     class="flex w-full h-[54px] items-center justify-center rounded-full bg-[#e40312] overflow-hidden">
+=======
+                    class="flex w-full h-[54px] items-center justify-center rounded-full bg-[#0AA085] overflow-hidden">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                     <span class="font-bold text-xl leading-[30px]">+</span>
                 </button>
             </div>
@@ -98,7 +106,11 @@
                                     data-price="{{ $product->price }}">{{ number_format($product->price, 0, ',', '.') }}</span>
                             </p>
                         </div>
+<<<<<<< HEAD
                         <button type="submit" class="rounded-full p-3 bg-[#e40312] font-bold text-white">
+=======
+                        <button type="submit" class="rounded-full p-3 bg-[#0AA085] font-bold text-white">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                             Beli sekarang
                         </button>
                     </div>
@@ -111,15 +123,24 @@
         <div id="toast-success" class="fixed top-6 w-3/4 max-w-sm left-1/2 -translate-x-1/2 z-[999] flex items-center gap-4  bg-white text-white px-5 py-3 rounded-full shadow-xl animate-toast-down">
 
             {{-- Icon --}}
+<<<<<<< HEAD
             <div class="flex items-center justify-center w-8 h-8 rounded-full bg-[#e40312]/20">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-[#e40312]" fill="none" viewBox="0 0 24 24"
+=======
+            <div class="flex items-center justify-center w-8 h-8 rounded-full bg-[#0AA085]/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-[#0AA085]" fill="none" viewBox="0 0 24 24"
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
             </div>
 
             {{-- Text --}}
+<<<<<<< HEAD
             <p class="text-sm text-[#e40312] font-medium">
+=======
+            <p class="text-sm text-[#0AA085] font-medium">
+>>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 {{ session('success') }}
             </p>
         </div>
