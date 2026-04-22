@@ -1,16 +1,9 @@
 @extends('layout.app')
 
-<<<<<<< HEAD
 @section('title', 'SRC Wulan')
 
 @section('content')
     <div class="relative flex flex-col w-full max-w-[640px] min-h-screen gap-5 mx-auto bg-[#ffffff]">
-=======
-@section('title', 'Madinashop')
-
-@section('content')
-    <div class="relative flex flex-col w-full max-w-[640px] min-h-screen gap-5 mx-auto bg-[#F5F5F0]">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
         <div id="top-bar" class="flex justify-between items-center px-4 mt-[10px]">
             <a href="{{route('front.index')}}">
                 <img src="{{asset('assets/images/icons/back.svg')}}" class="w-10 h-10" alt="icon">

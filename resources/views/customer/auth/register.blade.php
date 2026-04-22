@@ -5,19 +5,9 @@
 @section('content')
     <header class="flex items-center mb-20">
         <div class="p-2 bg-primary-green/20 rounded-lg mr-3">
-<<<<<<< HEAD
             <img src="{{ asset('assets/images/logo_src wulan.png') }}" alt="Logo SRC Wulan" class="w-6 h-6 object-cover">
         </div>
         <h1 class="text-xl font-semibold text-gray-800">SRC Wulan</h1>
-=======
-            <svg class="w-6 h-6 text-[#0AA085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-            </svg>
-        </div>
-        <h1 class="text-xl font-semibold text-gray-800">Madinashop</h1>
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
     </header>
     <div class="min-h-screen flex flex-col items-center pt-10">
 
@@ -27,7 +17,6 @@
             <h2 class="text-3xl font-bold text-gray-800">Resigtrasi</h2>
             <p class="text-secondary-text text-sm mt-1 mb-6">Silahkan buat akun anda dengan masukan email</p>
 
-<<<<<<< HEAD
             {{-- Alert for errors --}}
             @if ($errors->any())
                 <div class="alert alert-danger mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg animate-fade-in">
@@ -107,30 +96,6 @@
                     @if($errors->has('password_confirmation'))
                         {{ $errors->first('password_confirmation') }}
                     @endif
-=======
-            {{-- Username --}}
-            <form action="{{ route('customer.auth.register') }}" method="POST">
-                @csrf
-                <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">Username</label>
-                <input type="email" id="email" name="email"
-                    class="w-full bg-white rounded-full py-3 px-5 text-gray-700 shadow-sm border border-gray-200 focus:ring-primary-green focus:ring-2 outline-none"
-                    placeholder="Masukkan email anda">
-
-                {{-- Password --}}
-                <label for="password" class="block text-sm font-semibold text-gray-700 mt-3 mb-1">Password</label>
-                <div class="relative">
-                    <input type="password" id="password" name="password"
-                        class="w-full bg-white rounded-full py-3 px-5 text-gray-700 shadow-sm border border-gray-200 focus:ring-primary-green focus:ring-2 outline-none"
-                        placeholder="Masukkan password anda">
-
-                </div>
-                <label for="password" class="block text-sm font-semibold text-gray-700 mt-3 mb-1">Password</label>
-                <div class="relative">
-                    <input type="password" id="password" name="password_confirmation"
-                        class="w-full bg-white rounded-full py-3 px-5 text-gray-700 shadow-sm border border-gray-200 focus:ring-primary-green focus:ring-2 outline-none"
-                        placeholder="Masukkan password anda">
-
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 </div>
 
                 {{-- Forget --}}
@@ -138,31 +103,20 @@
                     {{-- <a href="#" class="text-secondary-text text-sm hover:text-primary-green">Lupa Password?</a> --}}
                 </div>
 
-<<<<<<< HEAD
                 {{-- Register Button --}}
                 <button id="registerBtn" type="submit"
                     class="w-full py-3 px-4 bg-gray-300 text-white rounded-full text-lg font-semibold cursor-not-allowed transition-all duration-300 ease-out transform hover:scale-105 active:scale-95 relative overflow-hidden disabled:hover:scale-100">
-=======
-                {{-- Login Button --}}
-                <button id="loginBtn" type="submit"
-                    class="w-full py-3 bg-gray-300 text-white rounded-full text-lg font-medium cursor-not-allowed">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                     Register
                 </button>
             </form>
             {{-- Register --}}
             <p class="text-center mt-4 text-secondary-text text-sm">
                 Sudah punya akun?
-<<<<<<< HEAD
                 <a href="{{ route('customer.auth.login') }}" class="text-[#e40312] font-semibold">Login</a>
-=======
-                <a href="{{ route('customer.auth.login') }}" class="text-[#0AA085] font-semibold">Login</a>
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
             </p>
         </div>
 
     </div>
-<<<<<<< HEAD
     <style>
         /* Enhanced button effects */
         #registerBtn {
@@ -382,24 +336,5 @@
             registerBtn.disabled = false;
             registerBtn.textContent = "Register";
         });
-=======
-    <script>
-        const username = document.getElementById("email");
-        const password = document.getElementById("password");
-        const loginBtn = document.getElementById("loginBtn");
-
-        function toggleButton() {
-            if (username.value.trim() !== "" && password.value.trim() !== "") {
-                loginBtn.classList.remove("bg-gray-300", "cursor-not-allowed");
-                loginBtn.classList.add("bg-[#0AA085]", "cursor-pointer");
-            } else {
-                loginBtn.classList.add("bg-gray-300", "cursor-not-allowed");
-                loginBtn.classList.remove("bg-[#0AA085]", "cursor-pointer");
-            }
-        }
-
-        username.addEventListener("input", toggleButton);
-        password.addEventListener("input", toggleButton);
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
     </script>
 @endsection

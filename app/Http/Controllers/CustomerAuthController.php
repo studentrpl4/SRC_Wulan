@@ -60,7 +60,6 @@ class CustomerAuthController extends Controller
     // REGISTER ACTION
     // ========================
     public function register(Request $request)
-<<<<<<< HEAD
     {
         $request->validate([
             'email' => ['required', 'email', 'unique:customers,email'],
@@ -83,23 +82,6 @@ class CustomerAuthController extends Controller
 
         return redirect()->route('customer.setupProfile');
     }
-=======
-{
-    $request->validate([
-        'email' => ['required', 'email', 'unique:customers,email'],
-        'password' => ['required', 'min:6', 'confirmed'],
-    ]);
-
-    $customer = Customer::create([
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
-
-    Auth::guard('customer')->login($customer);
-
-    return redirect()->route('customer.setupProfile');
-}
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
 
 public function logout(Request $request)
 {

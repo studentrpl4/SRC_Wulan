@@ -1,32 +1,16 @@
 @extends('layout.app')
 
-<<<<<<< HEAD
 @section('title', 'SRC Wulan')
 
 @section('content')
     <div class="min-h-screen bg-[#ffffff] px-4 pb-24">
-=======
-@section('title', 'Madinashop')
-
-@section('content')
-    <div class="min-h-screen bg-[#F4F5F1] px-4 pb-24">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
 
         {{-- HEADER --}}
         <header class="pt-6 mb-4">
             <div class="flex items-center justify-between">
                 <h1 class="font-semibold text-lg flex items-center gap-2">
-<<<<<<< HEAD
                     <img src="{{ asset('assets/images/logo_src wulan.png') }}" alt="Logo SRC Wulan" class="w-6 h-6 object-cover">
                     SRC Wulan
-=======
-                    <svg class="w-6 h-6 text-[#0AA085]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                    </svg>
-                    Madinashop
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 </h1>
 
                 <div class="flex items-center gap-3">
@@ -52,11 +36,7 @@
                         </a>
                     @else
                         <a href="{{ route('customer.auth.login') }}"
-<<<<<<< HEAD
                             class="p-2 px-5 rounded-full font-bold border bg-[#e40312] text-white border-[#e40312]">
-=======
-                            class="p-2 px-5 rounded-full font-bold border bg-[#0AA085] text-white border-[#0AA085]">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                             login
                         </a>
                     @endif
@@ -77,11 +57,7 @@
                         class="w-full bg-transparent outline-none text-gray-700">
                 </div>
 
-<<<<<<< HEAD
                 <button class="ml-0 bg-[#e40312] text-white px-5 py-3 rounded-r-full font-medium">
-=======
-                <button class="ml-0 bg-[#0AA085] text-white px-5 py-3 rounded-r-full font-medium">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                     Cari
                 </button>
             </div>
@@ -91,11 +67,7 @@
         <div class="flex items-center justify-between mb-3">
             <h2 class="font-semibold text-gray-800">Kategori Produk</h2>
             <div class="bg-white rounded-full p-1 px-3">
-<<<<<<< HEAD
                 <a class="text-[#e40312] font-medium text-sm" href="{{ route('category') }}">Lihat Semua</a>
-=======
-                <a class="text-[#0AA085] font-medium text-sm" href="{{ route('category') }}">Lihat Semua</a>
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
             </div>
         </div>
 
@@ -142,19 +114,11 @@
                         <div class="bg-white p-4 rounded-xl shadow-sm">
                             <img src="{{ asset('storage/' . $item->thumbnail) }}" class="w-full rounded-lg mb-3" alt="">
                             <h3 class="text-sm text-gray-700">{{ $item->name }} <br> {{ $item->about }} </h3>
-<<<<<<< HEAD
                             <p class="text-[#e40312] font-semibold text-sm mt-1">Rp.
                                 {{ number_format($item->price, 0, '.', '.') }}
                             </p>
                             <button type="submit"
                                 class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium">
-=======
-                            <p class="text-[#0AA085] font-semibold text-sm mt-1">Rp.
-                                {{ number_format($item->price, 0, '.', '.') }}
-                            </p>
-                            <button type="submit"
-                                class="mt-3 w-full bg-[#0AA085] text-white py-2 rounded-full text-sm font-medium">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                                 + Keranjang
                             </button>
                         </div>

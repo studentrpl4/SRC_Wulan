@@ -1,11 +1,7 @@
 @extends('layout.app')
 @section('title', 'Detail Pesanan')
 @section('content')
-<<<<<<< HEAD
     <div class="min-h-screen bg-[#ffffff] flex justify-center">
-=======
-    <div class="min-h-screen bg-[#F5F5F0] flex justify-center">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
         <div class="w-full max-w-sm px-4 pt-6 pb-10">
 
             <!-- Header -->

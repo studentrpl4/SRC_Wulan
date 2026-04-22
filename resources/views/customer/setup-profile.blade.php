@@ -9,21 +9,13 @@
         {{-- Login Box --}}
         <div class="w-full max-w-md px-3">
 
-<<<<<<< HEAD
             <h2 class="text-3xl font-bold text-gray-800">Set Up Profile</h2>
-=======
-            <h2 class="text-3xl font-bold text-gray-800">Setup Profile</h2>
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
             <p class="text-secondary-text text-sm mt-1 mb-6">Silahkan data anda</p>
 
             {{-- Username --}}
             <form action="{{ route('customer.setupProfile') }}" method="POST">
                 @csrf
-<<<<<<< HEAD
                 <label for="name" class="block text-sm font-semibold text-gray-700 mb-1">Nama lengkap</label>
-=======
-                <label for="name" class="block text-sm font-semibold text-gray-700 mb-1">Nama lenggkap</label>
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                 <input type="text" name="name" id="name" value="{{ old('name') }}"
                     class="w-full bg-white rounded-full py-3 px-5 text-gray-700 shadow-sm border border-gray-200 focus:ring-primary-green focus:ring-2 outline-none"
                     placeholder="Masukkan nama anda">
@@ -68,16 +60,11 @@
             {{-- Register --}}
             {{-- <p class="text-center mt-4 text-secondary-text text-sm">
                 Sudah punya akun?
-<<<<<<< HEAD
                 <a href="{{ route('customer.auth.login') }}" class="text-[#e40312] font-semibold">Login</a>
-=======
-                <a href="{{ route('customer.auth.login') }}" class="text-[#0AA085] font-semibold">Login</a>
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
             </p> --}}
         </div>
 
     </div>
-<<<<<<< HEAD
     <style>
         /* Button styles */
         #loginBtn {
@@ -156,26 +143,5 @@
 
         // Initial validation
         validateAll();
-=======
-    <script>
-        const username = document.getElementById("name");
-        const password = document.getElementById("phone");
-        // const password = document.getElementById("gender");
-        const password = document.getElementById("birth_date");
-        const loginBtn = document.getElementById("loginBtn");
-
-        function toggleButton() {
-            if (username.value.trim() !== "" && password.value.trim() !== "") {
-                loginBtn.classList.remove("bg-gray-300", "cursor-not-allowed");
-                loginBtn.classList.add("bg-[#0AA085]", "cursor-pointer");
-            } else {
-                loginBtn.classList.add("bg-gray-300", "cursor-not-allowed");
-                loginBtn.classList.remove("bg-[#0AA085]", "cursor-pointer");
-            }
-        }
-
-        username.addEventListener("input", toggleButton);
-        password.addEventListener("input", toggleButton);
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
     </script>
 @endsection

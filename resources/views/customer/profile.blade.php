@@ -1,11 +1,7 @@
 @extends('layout.app')
 @section('title', 'profile')
 @section('content')
-<<<<<<< HEAD
     <div class="min-h-screen bg-[#ffffff] flex justify-center">
-=======
-    <div class="min-h-screen bg-[#F5F5F0] flex justify-center">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
         <div class="w-full max-w-sm px-4 pt-6 pb-28">
 
             <!-- Header -->
@@ -53,11 +49,7 @@
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" class="sr-only peer" checked>
-<<<<<<< HEAD
                         <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-[#e40312] transition">
-=======
-                        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-[#0AA085] transition">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                         </div>
                         <span
                             class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-5">
@@ -113,11 +105,7 @@
                 <form action="{{ route('customer.logout') }}" method="POST">
                     @csrf
                     <button type="submit"
-<<<<<<< HEAD
                         class="flex items-center justify-between bg-[#e40312] w-full rounded-xl px-4 py-3">
-=======
-                        class="flex items-center justify-between bg-[#0AA085] w-full rounded-xl px-4 py-3">
->>>>>>> 6d2ee0824dc6b8da7ad98afd3adb7fcc0b376f22
                         <div class="flex items-center gap-3">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
