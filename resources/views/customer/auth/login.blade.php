@@ -7,7 +7,7 @@
         <div class="p-2 bg-primary-green/20 rounded-lg mr-3">
             <img src="{{ asset('assets/images/logo_src wulan.png') }}" alt="Logo SRC Wulan" class="w-6 h-6 object-cover">
         </div>
-        <h1 class="text-xl font-semibold text-gray-800">SRC Wulans</h1>
+        <h1 class="text-xl font-semibold text-gray-800">SRC Wulan 🏪</h1>
     </header>
     <div class="min-h-screen flex flex-col items-center pt-10">
 

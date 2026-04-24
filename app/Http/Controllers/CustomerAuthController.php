@@ -57,7 +57,7 @@ class CustomerAuthController extends Controller
     }
 
     // ========================
-    // REGISTER ACTION
+    // REGISTER ACTIONN
     // ========================
     public function register(Request $request)
     {

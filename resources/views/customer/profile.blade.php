@@ -1,12 +1,12 @@
 @extends('layout.app')
-@section('title', 'profile')
+@section('title', 'SRC Wulan 🏪')
 @section('content')
     <div class="min-h-screen bg-[#ffffff] flex justify-center">
         <div class="w-full max-w-sm px-4 pt-6 pb-28">
 
             <!-- Header -->
             <div class="text-center mb-6">
-                <h1 class="text-lg font-bold text-gray-900">Profil</h1>
+                <h1 class="text-lg font-bold text-gray-900">Profile</h1>
             </div>
 
             <!-- Avatar & User Info -->

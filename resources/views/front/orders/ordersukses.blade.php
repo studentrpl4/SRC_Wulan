@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'SRC Wulan')
+@section('title', 'SRC Wulan 🏪')
 
 @section('content')
     <div class=" relative flex flex-col w-full max-w-md min-h-screen bg-[#e40312]">

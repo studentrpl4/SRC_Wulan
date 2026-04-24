@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Detail Pesanan')
+@section('title', 'SRC Wulan 🏪')
 @section('content')
     <div class="min-h-screen bg-[#ffffff] flex justify-center">
         <div class="w-full max-w-sm px-4 pt-6 pb-10">

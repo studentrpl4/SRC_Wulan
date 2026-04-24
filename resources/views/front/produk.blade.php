@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'SRC Wulan')
+@section('title', 'SRC Wulan 🏪')
 
 @section('content')
     <div class="min-h-screen bg-[#ffffff] px-4 py-4 pb-24">
