@@ -14,7 +14,7 @@
         {{-- Login Box --}}
         <div class="w-full max-w-md px-3">
 
-            <h2 class="text-3xl font-bold text-gray-800">Resigtrasi</h2>
+            <h2 class="text-3xl font-bold text-gray-800">Registrasi</h2>
             <p class="text-secondary-text text-sm mt-1 mb-6">Silahkan buat akun anda dengan masukan email</p>
 
             {{-- Alert for errors --}}
