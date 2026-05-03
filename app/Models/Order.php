@@ -14,6 +14,8 @@ class Order extends Model
         'payment_method',
         'total_price',
         'status',
+        'promo_id',
+        'discount_amount',
     ];
 
     public function customer()
@@ -33,6 +35,16 @@ class Order extends Model
     public function transaksi()
     {
         return $this->hasOne(transaksi::class, 'order_id');
+    }
+
+    public function promo()
+    {
+        return $this->belongsTo(PromoCode::class);
+    }
+
+    public function usages()
+    {
+        return $this->hasMany(PromoUsage::class);
     }
 
     protected static function booted()
