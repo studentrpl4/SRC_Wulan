@@ -20,12 +20,16 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => 'admin123',
-        ]);
-        // Category::factory(5)->create();
+                'password' => 'admin123',
+            ]
+        );
 
-        // // 20 Products
-        // Product::factory(20)->create();
-        // $this->call(ProductPhotoSeeder::class);
+        $this->call([
+            CategorySeeder::class,
+            ProductSeeder::class,
+            CustomerSeeder::class,
+            PromoCodeSeeder::class,
+            OrderSeeder::class,
+        ]);
     }
 }
