@@ -62,4 +62,30 @@ class User extends Authenticatable implements FilamentUser
          return str_ends_with($this->email, '@gmail.com') && $this->hasVerifiedEmail();
     }
 
+    // Relasi ke membership
+    public function membership()
+    {
+        return $this->hasOne(Membership::class);
+    }
+
+    // Relasi ke member points
+    public function points()
+    {
+        return $this->hasMany(MemberPoint::class);
+    }
+
+    public function isMember(): bool
+    {
+        return $this->membership?->status === 'active';
+    }
+
+    // available point
+    public function availablePoints(): int
+    {
+        return $this->points()
+            ->where('expired_at', '>', now())
+            ->whereIn('type', ['earned'])
+            ->sum('points')
+            + $this->points()->whereIn('type', ['redeemed', 'voided', 'expired'])->sum('points');
+    }
 }
