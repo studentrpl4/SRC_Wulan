@@ -13,6 +13,8 @@ class PromoCode extends Model
         'code',
         'name',
         'description',
+        'banner_image',
+        'button_link',
         'discount_type',
         'discount_value',
         'min_purchase',

@@ -46,7 +46,7 @@
         </header>
 
         {{-- Pencarian --}}
-        <form action="{{route('front.search')}}" class="flex justify-between items-center mx-4">
+        <form action="{{ route('front.search') }}" class="flex justify-between items-center mx-4">
             <div class="flex items-center mb-6 w-full max-w-md">
                 <div class="flex-grow bg-white rounded-l-full px-4 py-3 shadow-sm flex items-center gap-2">
                     <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor">
@@ -62,6 +62,80 @@
                 </button>
             </div>
         </form>
+
+        {{-- HERO PROMO BANNER --}}
+        @php
+            $heroSlides = !empty($promoBanners) && count($promoBanners) ? $promoBanners : [
+                [
+                    'banner_image' => null,
+                    'title' => 'Promo SRC Wulan Spesial Hari Ini',
+                    'description' => 'Nikmati gratis ongkir dan diskon terbaik untuk belanja kebutuhan sehari-hari.',
+                    'discount_badge' => '50% OFF',
+                    'button_link' => route('front.index'),
+                ],
+            ];
+        @endphp
+
+        <section class="mb-6">
+            <div x-data="promoHeroSlider(@json($heroSlides))" x-init="init()" class="relative">
+                <div class="overflow-hidden rounded-3xl shadow-[0_18px_40px_rgba(0,0,0,0.08)] bg-white">
+                    <template x-for="(slide, index) in slides" :key="index">
+                        <div x-show="activeIndex === index"
+                            x-transition.duration.500ms
+                            class="relative grid h-[180px] grid-cols-1 gap-4 overflow-hidden px-4 py-5 sm:grid-cols-[1.4fr_1fr] sm:px-6">
+
+                            <div class="relative flex flex-col justify-between">
+                                <div class="space-y-2">
+                                    <template x-if="slide.discount_badge">
+                                        <span class="inline-flex rounded-full bg-[#ffe7e7] px-3 py-1 text-xs font-semibold text-[#e40312]">
+                                            <span x-text="slide.discount_badge"></span>
+                                        </span>
+                                    </template>
+
+                                    <h2 class="text-lg font-semibold text-gray-900 leading-tight"
+                                        x-text="slide.title"></h2>
+                                    <p class="text-sm leading-5 text-gray-600 max-w-md"
+                                        x-text="slide.description"></p>
+                                </div>
+
+                                <div>
+                                    <a :href="slide.button_link"
+                                        class="inline-flex items-center justify-center rounded-full bg-[#e40312] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#c40210]">
+                                        Belanja Sekarang
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="relative hidden overflow-hidden rounded-3xl sm:block">
+                                <template x-if="slide.banner_image">
+                                    <img :src="slide.banner_image"
+                                        alt="Promo SRC Wulan"
+                                        class="h-full w-full object-cover">
+                                </template>
+                                <template x-if="!slide.banner_image">
+                                    <div class="flex h-full items-center justify-center rounded-3xl bg-gradient-to-br from-[#fff1f0] via-[#ffe5e5] to-[#ffe7e7] text-center text-sm text-[#b91c1c] px-3">
+                                        <div>
+                                            <span class="block text-lg font-semibold text-[#991b1b]">Promo</span>
+                                            <span class="text-xs text-[#991b1b]">SRC Wulan</span>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="mt-4 flex items-center justify-center gap-2">
+                    <template x-for="(_, index) in slides" :key="index">
+                        <button type="button"
+                            class="h-2.5 w-2.5 rounded-full transition-all duration-300"
+                            :class="{'bg-[#e40312] w-8': activeIndex === index, 'bg-[#e5e7eb] w-2.5': activeIndex !== index}"
+                            @click="setIndex(index)"></button>
+                    </template>
+                </div>
+            </div>
+        </section>
+
         {{-- KATEGORI --}}
 
         <div class="flex items-center justify-between mb-3">
@@ -131,5 +205,64 @@
 
     {{-- BOTTOM NAV --}}
     @include('navbar.navbar')
+
+    @push('scripts')
+        <script defer src="https://unpkg.com/alpinejs@3.12.0/dist/cdn.min.js"></script>
+        <script>
+            function promoHeroSlider(initialSlides) {
+                return {
+                    slides: initialSlides || [],
+                    activeIndex: 0,
+                    intervalId: null,
+                    touchStartX: 0,
+                    touchEndX: 0,
+                    init() {
+                        if (!this.slides.length) {
+                            return;
+                        }
+                        this.startAutoplay();
+                        this.initSwipe();
+                    },
+                    setIndex(index) {
+                        this.activeIndex = index;
+                        this.resetAutoplay();
+                    },
+                    next() {
+                        this.activeIndex = (this.activeIndex + 1) % this.slides.length;
+                    },
+                    prev() {
+                        this.activeIndex = this.activeIndex === 0 ? this.slides.length - 1 : this.activeIndex - 1;
+                    },
+                    startAutoplay() {
+                        this.intervalId = setInterval(() => this.next(), 4500);
+                    },
+                    resetAutoplay() {
+                        if (this.intervalId) {
+                            clearInterval(this.intervalId);
+                        }
+                        this.startAutoplay();
+                    },
+                    initSwipe() {
+                        const slider = this.$root;
+                        slider.addEventListener('touchstart', (event) => {
+                            this.touchStartX = event.touches[0].clientX;
+                        }, { passive: true });
+
+                        slider.addEventListener('touchend', (event) => {
+                            this.touchEndX = event.changedTouches[0].clientX;
+
+                            if (this.touchEndX + 40 < this.touchStartX) {
+                                this.next();
+                                this.resetAutoplay();
+                            } else if (this.touchEndX - 40 > this.touchStartX) {
+                                this.prev();
+                                this.resetAutoplay();
+                            }
+                        }, { passive: true });
+                    }
+                };
+            }
+        </script>
+    @endpush
 
 @endsection

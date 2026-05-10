@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Select;
@@ -49,6 +50,19 @@ class PromoResource extends Resource
                         Textarea::make('description')
                             ->nullable()
                             ->rows(3),
+
+                        FileUpload::make('banner_image')
+                            ->image()
+                            ->directory('promo-banners')
+                            ->maxFiles(1)
+                            ->imagePreviewHeight('220')
+                            ->helperText('Upload banner promo untuk homepage.'),
+
+                        TextInput::make('button_link')
+                            ->nullable()
+                            ->url()
+                            ->placeholder('https://example.com/promo')
+                            ->helperText('Link tombol Belanja Sekarang di popup homepage.'),
                     ]),
 
                 Fieldset::make('Pengaturan Diskon')
