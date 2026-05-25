@@ -13,6 +13,18 @@ class transaksi extends Model
         'order_id',
         'status',
         'snap_token',
+        'payment_provider',
+        'external_reference_id',
         // 'product_id', di video itu brand_id
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
 }

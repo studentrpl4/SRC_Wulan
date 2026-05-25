@@ -15,7 +15,10 @@
 
                 <div class="flex items-center gap-3">
                     @if(Auth::guard('customer')->check())
-                        <a href="{{ route('cart.index') }}" class="p-2 bg-white rounded-full shadow-sm">
+                        @php
+                            $cartCount = \App\Models\Cart::where('customer_id', Auth::guard('customer')->id())->count();
+                        @endphp
+                        <a href="{{ route('cart.index') }}" class="relative p-2 bg-white rounded-full shadow-sm">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-shopping-cart-icon lucide-shopping-cart">
@@ -23,6 +26,11 @@
                                 <circle cx="19" cy="21" r="1" />
                                 <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
                             </svg>
+                            @if($cartCount > 0)
+                                <span class="absolute -top-1 -right-1 bg-[#e40312] text-white text-[10px] font-bold px-[5px] py-[1px] rounded-full shadow-sm border border-white">
+                                    {{ $cartCount }}
+                                </span>
+                            @endif
                         </a>
 
                         <a href="{{ route('front.chat') }}" class="p-2 bg-white rounded-full shadow-sm">
@@ -173,7 +181,7 @@
                                 {{ number_format($item->price, 0, '.', '.') }}
                             </p>
                             <button type="submit"
-                                class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium">
+                                class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium hover:bg-red-700 transition cursor-pointer relative z-10">
                                 + Keranjang
                             </button>
                         </div>

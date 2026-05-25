@@ -30,6 +30,22 @@
         @endforeach
         <form action="{{ route('checkout.process') }}" method="POST" class="flex flex-col gap-5">
             @csrf
+            
+            @if(session('error'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mx-4 relative" role="alert">
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mx-4 relative">
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="flex flex-col rounded-[20px] p-4 mx-4 pb-5 gap-5 bg-white shadow-md">
                 <div class="flex p-4 flex-col gap-2">
                     <label for="address" class="font-semibold">Masukan Alamat Lengkap</label>
@@ -71,29 +87,32 @@
             </div>
         </form>
     </div>
-    @if(isset($snapToken))
+    @if(config('payment.provider') === 'midtrans' && isset($snapToken))
         <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
         <script type="text/javascript">
-
             window.onload = function (e) {
                 snap.pay('{{ $snapToken }}', {
                     onSuccess: function (result) {
-                        // Redirect setelah sukses
-                        // Livewire.dispatch('berhasil');
                         window.location.href = "{{ route('order.success') }}";
                     },
                     onPending: function (result) {
-                        // Redirect juga jika pending
                         window.location.href = "{{ route('customer.orders') }}";
-
                     },
                     onError: function (result) {
                         window.location.href = "{{ route('front.index') }}";
                         alert("Pembayaran gagal. Silakan coba lagi.");
-
                     }
                 });
             };
         </script>
+    @endif
+
+    @if(config('payment.provider') === 'doku' && isset($dokuPayload))
+        {{-- If DOKU returns a redirect URL, navigate there. Otherwise show payload for debugging. --}}
+        @if(!empty($dokuPayload['redirect_url']))
+            <script>window.location.href = "{{ $dokuPayload['redirect_url'] }}";</script>
+        @else
+            <pre>{{ json_encode($dokuPayload, JSON_PRETTY_PRINT) }}</pre>
+        @endif
     @endif
 @endsection

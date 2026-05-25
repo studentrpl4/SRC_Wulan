@@ -22,10 +22,23 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->singleton(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->singleton(OrderRepositoryInterface::class, OrderRepository::class);
-        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        Config::$isProduction = env('MIDTRANS_IS_PRODUCTION', false);
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        // Initialize payment provider specific SDKs/configs only when needed.
+        $provider = config('payment.provider', env('PAYMENT_PROVIDER', 'midtrans'));
+        if ($provider === 'midtrans' && class_exists('\Midtrans\\Config')) {
+            Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+            Config::$isProduction = env('MIDTRANS_IS_PRODUCTION', false);
+            Config::$isSanitized = true;
+            Config::$is3ds = true;
+        }
+        // Bind PaymentGatewayInterface to the configured gateway implementation
+        $this->app->singleton(\App\Services\Payment\PaymentGatewayInterface::class, function ($app) {
+            $provider = config('payment.provider', env('PAYMENT_PROVIDER', 'midtrans'));
+            if ($provider === 'doku') {
+                return new \App\Services\Payment\DokuGateway();
+            }
+            // Fallback: if Midtrans or unknown, return null or a noop implementation later.
+            return null;
+        });
     }
 
     /**

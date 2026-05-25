@@ -25,6 +25,9 @@ Route::get('/produk', [FrontController::class, 'produk'])->name('produk');
 Route::get('/category', [FrontController::class, 'allcategory'])->name('category');
 
 Route::post('/midtrans/callback', [CheckoutController::class, 'handleMidtransCallback'])->withoutMiddleware([VerifyCsrfToken::class]);
+Route::post('/doku/callback', [\App\Http\Controllers\DokuController::class, 'handleCallback'])->withoutMiddleware([VerifyCsrfToken::class]);
+Route::get('/doku/pay/{transaksi}', [\App\Http\Controllers\DokuController::class, 'pay'])->middleware('auth:customer');
+Route::get('/doku/mock/{order}', [\App\Http\Controllers\DokuController::class, 'mockSuccess']);
 
 
 // Route::get('/check-booking', [OrderController::class, 'checkBooking']) -> name('front.check_booking');
