@@ -108,4 +108,8 @@ Route::middleware(['auth:customer'])->group(function () {
     Route::post('/cart/{cart}/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
 
     Route::get('/orders/{order}', [CustomerOrderController::class, 'showDetail'])->name('orders.show');
+
+    Route::get('/chat', function () {
+        return view('front.chat');
+    })->name('front.chat');
 });

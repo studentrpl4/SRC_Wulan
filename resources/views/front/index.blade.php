@@ -33,13 +33,11 @@
                             @endif
                         </a>
 
-                        <a href="#" class="p-2 bg-white rounded-full shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-bell-icon lucide-bell">
-                                <path d="M10.268 21a2 2 0 0 0 3.464 0" />
-                                <path
-                                    d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
+                        <a href="{{ route('front.chat') }}" class="p-2 bg-white rounded-full shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
                             </svg>
                         </a>
                     @else
@@ -75,70 +73,53 @@
         @php
             $heroSlides = !empty($promoBanners) && count($promoBanners) ? $promoBanners : [
                 [
-                    'banner_image' => null,
-                    'title' => 'Promo SRC Wulan Spesial Hari Ini',
-                    'description' => 'Nikmati gratis ongkir dan diskon terbaik untuk belanja kebutuhan sehari-hari.',
-                    'discount_badge' => '50% OFF',
-                    'button_link' => route('front.index'),
+                    'banner_image' => asset('assets/images/default-promo.jpg'),
+                    'title' => 'Belanja Hemat Hingga 50%',
+                    'description' => 'DISKON SPESIAL',
+                    'discount_badge' => 'DISKON SPESIAL',
+                    'button_link' => route('produk'),
                 ],
             ];
         @endphp
 
         <section class="mb-6">
             <div x-data="promoHeroSlider(@json($heroSlides))" x-init="init()" class="relative">
-                <div class="overflow-hidden rounded-3xl shadow-[0_18px_40px_rgba(0,0,0,0.08)] bg-white">
+                <div class="overflow-hidden rounded-3xl shadow-md">
                     <template x-for="(slide, index) in slides" :key="index">
-                        <div x-show="activeIndex === index"
+                        <div
+                            x-show="activeIndex === index"
                             x-transition.duration.500ms
-                            class="relative grid h-[180px] grid-cols-1 gap-4 overflow-hidden px-4 py-5 sm:grid-cols-[1.4fr_1fr] sm:px-6">
+                            class="relative h-[160px] rounded-3xl overflow-hidden bg-cover bg-center"
+                            :style="slide.banner_image 
+                                ? 'background-image: linear-gradient(90deg, rgba(0,0,0,0.65), rgba(0,0,0,0.10)), url(' + slide.banner_image + ')' 
+                                : 'background: linear-gradient(135deg, #0f766e, #e40312)'"
+                        >
+                            <div class="relative z-10 h-full flex flex-col justify-center px-6">
+                                <p class="text-white text-xs font-semibold uppercase tracking-wide mb-1"
+                                x-text="slide.discount_badge ?? 'DISKON SPESIAL'">
+                                </p>
 
-                            <div class="relative flex flex-col justify-between">
-                                <div class="space-y-2">
-                                    <template x-if="slide.discount_badge">
-                                        <span class="inline-flex rounded-full bg-[#ffe7e7] px-3 py-1 text-xs font-semibold text-[#e40312]">
-                                            <span x-text="slide.discount_badge"></span>
-                                        </span>
-                                    </template>
+                                <h2 class="text-white text-2xl font-bold leading-tight max-w-[260px]"
+                                    x-text="slide.title">
+                                </h2>
 
-                                    <h2 class="text-lg font-semibold text-gray-900 leading-tight"
-                                        x-text="slide.title"></h2>
-                                    <p class="text-sm leading-5 text-gray-600 max-w-md"
-                                        x-text="slide.description"></p>
-                                </div>
-
-                                <div>
-                                    <a :href="slide.button_link"
-                                        class="inline-flex items-center justify-center rounded-full bg-[#e40312] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#c40210]">
-                                        Belanja Sekarang
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="relative hidden overflow-hidden rounded-3xl sm:block">
-                                <template x-if="slide.banner_image">
-                                    <img :src="slide.banner_image"
-                                        alt="Promo SRC Wulan"
-                                        class="h-full w-full object-cover">
-                                </template>
-                                <template x-if="!slide.banner_image">
-                                    <div class="flex h-full items-center justify-center rounded-3xl bg-gradient-to-br from-[#fff1f0] via-[#ffe5e5] to-[#ffe7e7] text-center text-sm text-[#b91c1c] px-3">
-                                        <div>
-                                            <span class="block text-lg font-semibold text-[#991b1b]">Promo</span>
-                                            <span class="text-xs text-[#991b1b]">SRC Wulan</span>
-                                        </div>
-                                    </div>
-                                </template>
+                                <a :href="slide.button_link"
+                                class="mt-4 inline-flex w-fit items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#e40312] shadow-sm">
+                                    Belanja Sekarang
+                                </a>
                             </div>
                         </div>
                     </template>
                 </div>
 
-                <div class="mt-4 flex items-center justify-center gap-2">
+                <div class="mt-3 flex items-center justify-center gap-2" x-show="slides.length > 1">
                     <template x-for="(_, index) in slides" :key="index">
-                        <button type="button"
-                            class="h-2.5 w-2.5 rounded-full transition-all duration-300"
-                            :class="{'bg-[#e40312] w-8': activeIndex === index, 'bg-[#e5e7eb] w-2.5': activeIndex !== index}"
-                            @click="setIndex(index)"></button>
+                        <button
+                            type="button"
+                            class="h-2.5 rounded-full transition-all duration-300"
+                            :class="activeIndex === index ? 'bg-[#e40312] w-8' : 'bg-[#e5e7eb] w-2.5'"
+                            @click="setIndex(index)">
+                        </button>
                     </template>
                 </div>
             </div>
