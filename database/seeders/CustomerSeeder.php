@@ -15,7 +15,7 @@ class CustomerSeeder extends Seeder
         $customers = [
             [
                 'email'             => 'budi.santoso@gmail.com',
-                'password'          => 'password123',
+                'password'          => 'member123',
                 'name'              => 'Budi Santoso',
                 'phone'             => '081234567890',
                 'gender'            => 'male',
@@ -24,7 +24,7 @@ class CustomerSeeder extends Seeder
             ],
             [
                 'email'             => 'dewi.lestari@gmail.com',
-                'password'          => 'password123',
+                'password'          => 'member123',
                 'name'              => 'Dewi Lestari',
                 'phone'             => '082345678901',
                 'gender'            => 'female',
@@ -33,7 +33,7 @@ class CustomerSeeder extends Seeder
             ],
             [
                 'email'             => 'andi.pratama@gmail.com',
-                'password'          => 'password123',
+                'password'          => 'member123',
                 'name'              => 'Andi Pratama',
                 'phone'             => '083456789012',
                 'gender'            => 'male',
@@ -42,7 +42,7 @@ class CustomerSeeder extends Seeder
             ],
             [
                 'email'             => 'sari.wulandari@gmail.com',
-                'password'          => 'password123',
+                'password'          => 'member123',
                 'name'              => 'Sari Wulandari',
                 'phone'             => '084567890123',
                 'gender'            => 'female',
@@ -51,7 +51,7 @@ class CustomerSeeder extends Seeder
             ],
             [
                 'email'             => 'rizky.ramadhan@gmail.com',
-                'password'          => 'password123',
+                'password'          => 'member123',
                 'name'              => 'Rizky Ramadhan',
                 'phone'             => '085678901234',
                 'gender'            => 'male',

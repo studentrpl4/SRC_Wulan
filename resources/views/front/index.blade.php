@@ -129,39 +129,68 @@
 
         <div class="flex items-center justify-between mb-3">
             <h2 class="font-semibold text-gray-800">Kategori Produk</h2>
-            <div class="bg-white rounded-full p-1 px-3">
-                <a class="text-[#e40312] font-medium text-sm" href="{{ route('category') }}">Lihat Semua</a>
-            </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 mb-6">
-            {{-- Item kategori --}}
-            @if (!empty($categories))
-                @foreach ($categories as $item)
-                    <a href="{{route('front.category', $item->slug)}}">
-                        <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3">
-                            {{-- <div class=""> --}}
+        @if (!empty($categories) && $categories->count() > 0)
+            <div x-data="{ open: false }" class="w-full">
+                <!-- Grid Utama: Menampilkan 5 Kategori Pertama + 1 Tombol Toggle "Lainnya" -->
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    @foreach ($categories->take(5) as $item)
+                        <a href="{{route('front.category', $item->slug)}}">
+                            <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3 transition-all duration-300 hover:ring-2 hover:ring-[#FFC700] h-full">
                                 @if ($item->icon && file_exists(public_path('storage/' . $item->icon)))
                                     <img src="{{ asset('storage/' . $item->icon) }}"
                                         class="w-6 h-6 object-cover object-left text-primary-green" alt="thumbnail">
                                 @else
-                                    <svg class="w-6 h-6 text-primary-green" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 6h16M4 12h16M4 18h16" />
+                                    <svg class="w-6 h-6 text-[#e40312]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                                     </svg>
                                 @endif
+                                <span class="text-sm font-semibold text-gray-700 leading-tight">{{ $item->name }}</span>
+                            </div>
+                        </a>
+                    @endforeach
 
-                                {{--
-                            </div> --}}
-                            <span class="text-sm font-medium text-gray-700">{{ $item->name }}</span>
-                        </div>
-                    </a>
-                @endforeach
-            @else
-                <p>Belum Ada Data Terbaru...</p>
-            @endif
+                    <!-- Tombol Toggle "Lainnya" / "Sembunyikan" -->
+                    @if ($categories->count() > 5)
+                        <button @click="open = !open" 
+                            class="bg-white p-4 rounded-xl shadow-sm flex items-center justify-between gap-3 transition-all duration-300 hover:ring-2 hover:ring-[#FFC700] text-[#e40312] font-bold text-sm text-left h-full w-full outline-none focus:outline-none cursor-pointer">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-[#e40312] transform transition-transform duration-300" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                                <span x-text="open ? 'Sembunyikan' : 'Lainnya'">Lainnya</span>
+                            </div>
+                        </button>
+                    @endif
+                </div>
 
-        </div>
+                <!-- Bagian Kategori Tambahan dengan Efek Transition -->
+                @if ($categories->count() > 5)
+                    <div x-show="open" 
+                        x-transition.duration.300ms
+                        class="grid grid-cols-2 gap-3 mb-6 mt-0">
+                        @foreach ($categories->skip(5) as $item)
+                            <a href="{{route('front.category', $item->slug)}}">
+                                <div class="bg-white p-4 rounded-xl shadow-sm flex items-center gap-3 transition-all duration-300 hover:ring-2 hover:ring-[#FFC700] h-full">
+                                    @if ($item->icon && file_exists(public_path('storage/' . $item->icon)))
+                                        <img src="{{ asset('storage/' . $item->icon) }}"
+                                            class="w-6 h-6 object-cover object-left text-primary-green" alt="thumbnail">
+                                    @else
+                                        <svg class="w-6 h-6 text-[#e40312]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                        </svg>
+                                    @endif
+                                    <span class="text-sm font-semibold text-gray-700 leading-tight">{{ $item->name }}</span>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        @else
+            <p class="text-gray-500 text-sm text-center py-4">Belum Ada Kategori Terbaru...</p>
+        @endif
 
         {{-- PRODUK TERLARIS --}}
         <h2 class="font-semibold text-gray-800 mb-3">Produk Terlaris</h2>
@@ -174,21 +203,66 @@
                         @csrf
                         <input type="hidden" name="product_id" value="{{$item->id}}">
                         <input type="hidden" name="quantity" id="quantity" value="1">
-                        <div class="bg-white p-4 rounded-xl shadow-sm">
-                            <img src="{{ asset('storage/' . $item->thumbnail) }}" class="w-full rounded-lg mb-3" alt="">
-                            <h3 class="text-sm text-gray-700">{{ $item->name }} <br> {{ $item->about }} </h3>
-                            <p class="text-[#e40312] font-semibold text-sm mt-1">Rp.
-                                {{ number_format($item->price, 0, '.', '.') }}
-                            </p>
-                            <button type="submit"
-                                class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium hover:bg-red-700 transition cursor-pointer relative z-10">
-                                + Keranjang
-                            </button>
+                        <div class="bg-white p-4 rounded-xl shadow-sm h-full flex flex-col justify-between">
+                            <div>
+                                <img src="{{ $item->thumbnail_url }}" class="w-full rounded-lg mb-3 object-cover aspect-square" alt="">
+                                <h3 class="text-sm text-gray-700 font-medium leading-snug line-clamp-2">{{ $item->name }}</h3>
+                                <p class="text-xs text-gray-400 mt-1 line-clamp-1">{{ $item->about }}</p>
+                            </div>
+                            <div>
+                                <p class="text-[#e40312] font-bold text-sm mt-2">
+                                    Rp. {{ number_format($item->price, 0, '.', '.') }}
+                                </p>
+                                <button type="submit"
+                                    class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-semibold hover:bg-red-700 transition cursor-pointer relative z-10">
+                                    + Keranjang
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </a>
             @endforeach
         </div>
+
+        <!-- Custom Premium Pagination Links -->
+        @if ($newProducts->hasPages())
+            <div class="flex items-center justify-between mt-8 mb-12 bg-white px-4 py-3 rounded-2xl shadow-sm border border-gray-100">
+                <!-- Tombol Previous -->
+                @if ($newProducts->onFirstPage())
+                    <span class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 cursor-not-allowed">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </span>
+                @else
+                    <a href="{{ $newProducts->previousPageUrl() }}" class="w-10 h-10 rounded-xl bg-gray-50 hover:bg-red-50 text-gray-600 hover:text-[#e40312] flex items-center justify-center transition-all duration-300 active:scale-95">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </a>
+                @endif
+
+                <!-- Info Halaman -->
+                <span class="text-xs font-bold text-gray-600">
+                    Halaman <span class="text-[#e40312]">{{ $newProducts->currentPage() }}</span> dari {{ $newProducts->lastPage() }}
+                </span>
+
+                <!-- Tombol Next -->
+                @if ($newProducts->hasMorePages())
+                    <a href="{{ $newProducts->nextPageUrl() }}" class="w-10 h-10 rounded-xl bg-gray-50 hover:bg-red-50 text-gray-600 hover:text-[#e40312] flex items-center justify-center transition-all duration-300 active:scale-95">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                @else
+                    <span class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 cursor-not-allowed">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                @endif
+            </div>
+        @endif
 
     </div>
 

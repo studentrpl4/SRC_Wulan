@@ -17,6 +17,13 @@
             <h2 class="text-3xl font-bold text-gray-800">Login</h2>
             <p class="text-secondary-text text-sm mt-1 mb-6">Masukkan username anda</p>
 
+            {{-- Error Message Box --}}
+            @if ($errors->any())
+                <div class="mb-5 p-4 rounded-2xl bg-red-50 border border-red-100 text-[#e40312] text-sm font-semibold animate-[slideIn_0.3s_ease-out]">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
             {{-- Username --}}
             <form action="{{ route('customer.auth.login') }}" method="POST" id="loginForm">
                 @csrf

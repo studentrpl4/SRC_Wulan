@@ -32,7 +32,7 @@ class FrontService
     {
         $categories = $this->categoryRepository->getAllCategories();
         $popularProducts = $this->productRepository->getPopularProducts(4);
-        $newProducts = $this->productRepository->getAllNewProducts();
+        $newProducts = $this->productRepository->getAllNewProducts(10);
 
         $promoModels = PromoCode::query()
             ->where('is_active', true)

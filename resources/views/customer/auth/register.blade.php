@@ -211,7 +211,7 @@
         });
 
         // Validation functions
-        function validateEmail() {
+        function validateEmail(showErrors = true) {
             const value = email.value.trim();
             const errorDiv = document.getElementById("email-error");
             let message = "";
@@ -222,12 +222,14 @@
                 message = "Format email tidak valid.";
             }
 
-            showError(errorDiv, message);
-            email.classList.toggle("error", message !== "");
+            if (showErrors) {
+                showError(errorDiv, message);
+                email.classList.toggle("error", message !== "");
+            }
             return message === "";
         }
 
-        function validatePassword() {
+        function validatePassword(showErrors = true) {
             const value = password.value;
             const errorDiv = document.getElementById("password-error");
             let message = "";
@@ -240,12 +242,14 @@
                 message = "Password harus mengandung huruf dan angka.";
             }
 
-            showError(errorDiv, message);
-            password.classList.toggle("error", message !== "");
+            if (showErrors) {
+                showError(errorDiv, message);
+                password.classList.toggle("error", message !== "");
+            }
             return message === "";
         }
 
-        function validatePasswordConfirmation() {
+        function validatePasswordConfirmation(showErrors = true) {
             const value = passwordConfirmation.value;
             const errorDiv = document.getElementById("password_confirmation-error");
             let message = "";
@@ -256,8 +260,10 @@
                 message = "Konfirmasi password tidak cocok.";
             }
 
-            showError(errorDiv, message);
-            passwordConfirmation.classList.toggle("error", message !== "");
+            if (showErrors) {
+                showError(errorDiv, message);
+                passwordConfirmation.classList.toggle("error", message !== "");
+            }
             return message === "";
         }
 
@@ -273,10 +279,10 @@
             }
         }
 
-        function validateAll() {
-            const emailValid = validateEmail();
-            const passwordValid = validatePassword();
-            const confirmationValid = validatePasswordConfirmation();
+        function validateAll(showErrors = true) {
+            const emailValid = validateEmail(showErrors);
+            const passwordValid = validatePassword(showErrors);
+            const confirmationValid = validatePasswordConfirmation(showErrors);
 
             const isValid = emailValid && passwordValid && confirmationValid;
 
@@ -293,17 +299,17 @@
 
         // Event listeners
         email.addEventListener("input", () => {
-            validateEmail();
-            validateAll();
+            validateEmail(true);
+            validateAll(true);
         });
         password.addEventListener("input", () => {
-            validatePassword();
-            validatePasswordConfirmation(); // Re-validate confirmation when password changes
-            validateAll();
+            validatePassword(true);
+            validatePasswordConfirmation(true); // Re-validate confirmation when password changes
+            validateAll(true);
         });
         passwordConfirmation.addEventListener("input", () => {
-            validatePasswordConfirmation();
-            validateAll();
+            validatePasswordConfirmation(true);
+            validateAll(true);
         });
 
         // Form submit loading state
@@ -312,8 +318,8 @@
             registerBtn.textContent = "Mendaftarkan...";
         });
         
-        // Initial validation
-        validateAll();
+        // Initial validation without showing errors on load
+        validateAll(false);
 
         // Show backend errors on load
         document.addEventListener("DOMContentLoaded", function() {

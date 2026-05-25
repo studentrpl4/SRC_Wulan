@@ -6,7 +6,7 @@ Interface ProductRepositoryInterface
 {
     public function getPopularProducts($limit);
 
-    public function getAllNewProducts();
+    public function getAllNewProducts($perPage = null);
 
     public function find($id);
 

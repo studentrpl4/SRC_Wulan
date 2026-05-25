@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('member_points', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('customers')->cascadeOnDelete();
             $table->foreignId('payment_order_id')->nullable()->constrained('orders')->nullOnDelete();
             $table->string('ktp_photo'); // path file KTP
             $table->enum('status', ['pending', 'active', 'rejected'])->default('pending');

@@ -25,6 +25,33 @@ class Product extends Model
         // 'product_id', di video itu brand_id
     ];
 
+    protected $appends = [
+        'thumbnail_url',
+    ];
+
+    public function getThumbnailUrlAttribute()
+    {
+        if ($this->thumbnail && $this->thumbnail !== 'product_default.png' && $this->thumbnail !== 'placeholder.png' && $this->thumbnail !== 'product_default.webp') {
+            return asset('storage/' . $this->thumbnail);
+        }
+
+        $categorySlug = $this->category?->slug ?? 'lain-lain';
+        
+        $map = [
+            'makanan-ringan' => 'snack_placeholder.png',
+            'minuman' => 'beverage_placeholder.png',
+            'makanan-instan' => 'instant_food_placeholder.png',
+            'kebutuhan-rumah-tangga' => 'household_placeholder.png',
+            'perawatan-tubuh' => 'body_care_placeholder.png',
+            'alat-tulis' => 'stationery_placeholder.png',
+            'bahan-rotikue' => 'baking_placeholder.png',
+            'bumbu-masakan' => 'spices_placeholder.png',
+        ];
+
+        $filename = $map[$categorySlug] ?? 'general_placeholder.png';
+        return asset('assets/images/placeholders/' . $filename);
+    }
+
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;

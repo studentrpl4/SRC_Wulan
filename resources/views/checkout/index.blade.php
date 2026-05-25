@@ -15,7 +15,7 @@
         @foreach ($cartItems as $item)
             <div class="flex items-center rounded-3xl gap-2 p-3 bg-white shadow-md mx-4">
                 <div class="flex shrink-0 w-20 h-20 rounded-2xl  p-1 overflow-hidden">
-                    <img src="{{ Storage::url($item->product->thumbnail) }}" class="w-full h-full object-contain" alt="">
+                    <img src="{{ $item->product->thumbnail_url }}" class="w-full h-full object-contain" alt="">
                 </div>
                 <div class="flex flex-col w-full">
                     <h1 id="title" class="font-bold text-lg leading-6">{{ $item->product->name }}</h1>
