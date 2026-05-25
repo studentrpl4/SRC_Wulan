@@ -41,4 +41,12 @@ class Customer extends Authenticatable
             $this->attributes['password'] = Hash::needsRehash($value) ? Hash::make($value) : $value;
         }
     }
+
+    /**
+     * Get the chat messages for the customer.
+     */
+    public function chatMessages()
+    {
+        return $this->hasMany(ChatMessage::class);
+    }
 }
