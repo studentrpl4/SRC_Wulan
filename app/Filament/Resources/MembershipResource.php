@@ -35,8 +35,8 @@ class MembershipResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Informasi Member')->columns(2)->schema([
                     Forms\Components\Select::make('user_id')
-                        ->label('User')
-                        ->relationship('user', 'name')
+                        ->label('Customer')
+                        ->relationship('customer', 'name')
                         ->searchable()
                         ->preload()
                         ->required()
@@ -82,12 +82,12 @@ class MembershipResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
+                Tables\Columns\TextColumn::make('customer.name')
                     ->label('Nama')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('user.email')
+                Tables\Columns\TextColumn::make('customer.email')
                     ->label('Email')
                     ->searchable(),
 

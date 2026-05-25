@@ -52,7 +52,7 @@
                         <input type="hidden" name="product_id" value="{{$item->id}}">
                         <input type="hidden" name="quantity" id="quantity" value="1">
                         <div class="bg-white p-4 rounded-xl shadow-sm">
-                            <img src="{{ asset('storage/' . $item->thumbnail) }}" class="w-full rounded-lg mb-3" alt="">
+                            <img src="{{ $item->thumbnail_url }}" class="w-full rounded-lg mb-3" alt="">
                             <h3 class="text-sm text-gray-700">{{ $item->name }} <br> {{ $item->about }} </h3>
                             <p class="text-[#e40312] font-semibold text-sm mt-1">Rp.
                                 {{ number_format($item->price, 0, '.', '.') }}
@@ -76,7 +76,7 @@
                         <input type="hidden" name="product_id" value="{{$item->id}}">
                         <input type="hidden" name="quantity" id="quantity" value="1">
                         <div class="bg-white p-4 rounded-xl shadow-sm">
-                            <img src="{{ asset('storage/' . $item->thumbnail) }}" class="w-full rounded-lg mb-3" alt="">
+                            <img src="{{ $item->thumbnail_url }}" class="w-full rounded-lg mb-3" alt="">
                             <h3 class="text-sm text-gray-700">{{ $item->name }} <br> {{ $item->about }} </h3>
                             <p class="text-[#e40312] font-semibold text-sm mt-1">Rp.
                                 {{ number_format($item->price, 0, '.', '.') }}

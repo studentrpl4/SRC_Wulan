@@ -10,15 +10,17 @@ class MemberPoint extends Model
 {
     use HasFactory;
 
+    protected $table = 'memberships';
+
     protected $fillable = [
         'user_id', 'order_id', 'points', 'type', 'description', 'expired_at',
     ];
 
     protected $casts = ['expired_at' => 'datetime'];
 
-    public function user()
+    public function customer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class, 'user_id');
     }
 
     public function order()

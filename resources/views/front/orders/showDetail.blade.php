@@ -98,7 +98,7 @@
                 @foreach ($order->order_items as $item)
                     {{-- {{ dd($item) }} --}}
                     <div class="flex items-center gap-3">
-                        <img src="{{ asset('storage/' . $item->product->thumbnail) }}" class="w-12 h-12 rounded-lg border object-cover"
+                        <img src="{{ $item->product->thumbnail_url }}" class="w-12 h-12 rounded-lg border object-cover"
                             alt="produk" />
 
                         <div class="flex-1">

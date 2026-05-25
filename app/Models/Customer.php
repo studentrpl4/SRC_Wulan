@@ -49,4 +49,40 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(ChatMessage::class);
     }
+
+    /**
+     * Get the membership application for the customer.
+     */
+    public function membership()
+    {
+        return $this->hasOne(Membership::class, 'user_id');
+    }
+
+    /**
+     * Get the points transactions for the customer.
+     */
+    public function points()
+    {
+        return $this->hasMany(MemberPoint::class, 'user_id');
+    }
+
+    /**
+     * Check if customer is an active member.
+     */
+    public function isMember(): bool
+    {
+        return $this->membership?->status === 'active';
+    }
+
+    /**
+     * Calculate available points for the customer.
+     */
+    public function availablePoints(): int
+    {
+        return $this->points()
+            ->where('expired_at', '>', now())
+            ->whereIn('type', ['earned'])
+            ->sum('points')
+            + $this->points()->whereIn('type', ['redeemed', 'voided', 'expired'])->sum('points');
+    }
 }

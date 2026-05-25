@@ -18,8 +18,11 @@ class ProductRepository implements ProductRepositoryInterface
         return Product::where('name', 'LIKE', '%' . $keyword . '%')->get();
     }
 
-    public function getAllNewProducts()
+    public function getAllNewProducts($perPage = null)
     {
+        if ($perPage) {
+            return Product::latest()->paginate($perPage);
+        }
         return Product::latest()->get();
     }
 

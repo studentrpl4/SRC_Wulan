@@ -9,6 +9,8 @@ class Membership extends Model
 {
     use HasFactory;
 
+    protected $table = 'member_points';
+
     protected $fillable = [
         'user_id', 'payment_order_id', 'ktp_photo',
         'status', 'approved_at', 'approved_by', 'rejection_reason',
@@ -16,9 +18,9 @@ class Membership extends Model
 
     protected $casts = ['approved_at' => 'datetime'];
 
-    public function user()
+    public function customer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class, 'user_id');
     }
 
     public function paymentOrder()
