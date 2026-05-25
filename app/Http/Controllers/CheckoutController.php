@@ -13,9 +13,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Midtrans\Config;
 use Midtrans\Snap;
+use App\Services\Payment\PaymentGatewayInterface;
 
 class CheckoutController extends Controller
 {
+    protected $doku;
+
+    public function __construct(?PaymentGatewayInterface $doku = null)
+    {
+        $this->doku = $doku;
+    }
     public function index()
     {
         // ambil customer yg sedang login
@@ -80,7 +87,32 @@ class CheckoutController extends Controller
             ]);
         }
 
+        // Hapus item keranjang yang di-checkout saja
+        \App\Models\Cart::whereIn('id', $cartItems->pluck('id'))->delete();
+
         if ($request->payment_method == 'transfer') {
+            // If application is configured to use DOKU as provider, delegate to DokuGateway
+            if (config('payment.provider') === 'doku') {
+                $result = $this->doku->initiatePayment($order, ['customer' => $customer, 'items' => $cartItems]);
+
+                transaksi::create([
+                    'customer_id' => $customerId,
+                    'order_id' => $order->id,
+                    'status' => $result['status'] ?? 'menunggu',
+                    'snap_token' => null,
+                    'payment_provider' => 'doku',
+                    'external_reference_id' => $result['external_id'] ?? null,
+                ]);
+
+                // Prefer redirect_url from gateway result; fall back to payload for debug
+                if (!empty($result['redirect_url'])) {
+                    return redirect()->away($result['redirect_url']);
+                }
+
+                $dokuPayload = $result['payload'] ?? [];
+                return view('checkout.index', compact('dokuPayload', 'cartItems', 'total'));
+            }
+
             Config::$serverKey = config('midtrans.serverKey');
             Config::$isProduction = config('midtrans.isProduction');
             Config::$isSanitized = true;
@@ -119,6 +151,7 @@ class CheckoutController extends Controller
                 'order_id' => $order->id,
                 'status' => 'menunggu',
                 'snap_token' => $snapToken,
+                'payment_provider' => config('payment.provider', 'midtrans'),
             ]);
             // $transaksi->user_id = $customerId;
             // $transaksi->order_id = $order->id;
@@ -137,6 +170,7 @@ class CheckoutController extends Controller
             'order_id' => $order->id,
             'status' => 'menunggu',
             'snap_token' => null,
+            'payment_provider' => config('payment.provider', 'midtrans'),
         ]);
         // kosongkan cart customer
         // Cart::where('customer_id', $customerId)->delete();

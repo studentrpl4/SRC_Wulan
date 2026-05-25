@@ -34,10 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     ".item-subtotal-display"
                 );
 
-                // Ambil teks, hilangkan "Rp " dan titik pemisah ribuan
-                let subtotalText = subtotalElement.textContent
-                    .replace("Rp ", "")
-                    .replace(/\./g, "");
+                // Ambil teks, hilangkan semua karakter non-digit
+                let subtotalText = subtotalElement.textContent.replace(/\D/g, "");
                 let subtotal = parseInt(subtotalText) || 0;
 
                 grandTotal += subtotal;

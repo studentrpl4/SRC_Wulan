@@ -58,7 +58,7 @@
                                 {{ number_format($item->price, 0, '.', '.') }}
                             </p>
                             <button type="submit"
-                                class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium">
+                                class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium hover:bg-red-700 transition cursor-pointer relative z-10">
                                 + Keranjang
                             </button>
                         </div>
@@ -82,7 +82,7 @@
                                 {{ number_format($item->price, 0, '.', '.') }}
                             </p>
                             <button type="submit"
-                                class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium">
+                                class="mt-3 w-full bg-[#e40312] text-white py-2 rounded-full text-sm font-medium hover:bg-red-700 transition cursor-pointer relative z-10">
                                 + Keranjang
                             </button>
                         </div>

@@ -98,10 +98,17 @@
                                         Pesanan telah sampai
                                     </button>
                                 @elseif($item->transaksi->status == 'menunggu' && $item->payment_method == 'transfer')
-                                    <button type="submit" onclick="payWithSnap('{{ $item->transaksi->snap_token }}')"
-                                        class="bg-orange-500 text-white text-sm px-4 py-2 rounded-full font-medium">
-                                        Bayar
-                                    </button>
+                                    @if(optional($item->transaksi)->payment_provider === 'doku')
+                                        <button type="button" onclick="payWithDoku('{{ $item->transaksi->id }}')"
+                                            class="bg-orange-500 text-white text-sm px-4 py-2 rounded-full font-medium">
+                                            Bayar
+                                        </button>
+                                    @else
+                                        <button type="submit" onclick="payWithSnap('{{ $item->transaksi->snap_token }}')"
+                                            class="bg-orange-500 text-white text-sm px-4 py-2 rounded-full font-medium">
+                                            Bayar
+                                        </button>
+                                    @endif
                                 @endif
                             @else
                                 @if ($item->status == 'processing')
@@ -328,32 +335,33 @@
             </div>
 
         </div>
-        {{-- @if(isset($snapToken)) --}}
-        <script src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
-        <script type="text/javascript">
-
-            function payWithSnap(snapToken) {
-                snap.pay(snapToken, {
-                    onSuccess: function (result) {
-                        // Redirect setelah sukses
-                        // Livewire.dispatch('berhasil');
-                        window.location.href = "{{ route('order.success') }}";
-                    },
-                    onPending: function (result) {
-                        // Redirect juga jika pending
-                        window.location.href = "{{ route('customer.orders') }}";
-
-                    },
-                    onError: function (result) {
-                        window.location.href = "{{ route('customer.orders') }}";
-                        alert("transaksi gagal silahkan pesan ulang.");
-
-                    }
-                });
-            };
-        </script>
-        {{-- @endif --}}
+        @if(config('payment.provider') === 'midtrans')
+            <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+                data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+            <script type="text/javascript">
+                function payWithSnap(snapToken) {
+                    snap.pay(snapToken, {
+                        onSuccess: function (result) {
+                            window.location.href = "{{ route('order.success') }}";
+                        },
+                        onPending: function (result) {
+                            window.location.href = "{{ route('customer.orders') }}";
+                        },
+                        onError: function (result) {
+                            window.location.href = "{{ route('customer.orders') }}";
+                            alert("transaksi gagal silahkan pesan ulang.");
+                        }
+                    });
+                };
+            </script>
+        @elseif(config('payment.provider') === 'doku')
+            <script>
+                function payWithDoku(transaksiId) {
+                    // redirect to server endpoint that initiates DOKU checkout
+                    window.location.href = '/doku/pay/' + transaksiId;
+                }
+            </script>
+        @endif
         <script>
             const btnOngoing = document.getElementById('btn-ongoing');
             const btnHistory = document.getElementById('btn-history');
